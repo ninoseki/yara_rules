@@ -1,9 +1,9 @@
 rule ShadowVoice {
    strings:
-      $a = "AndroidManifest.xml"
-      $b = /assets\/.{1,30}\.mp3/
-      $c = /assets\/.{1,30}\/.{1,30}\.mp3/
-      $d = /res\/raw\/.{1,30}\.mp3/
+      $manifest = "AndroidManifest.xml"
+      $assets_mp3_a = /assets\/.{1,30}\.mp3/
+      $assets_mp3_b = /assets\/.{1,30}\/.{1,30}\.mp3/
+      $res_mp3 = /res\/raw\/.{1,30}\.mp3/
    condition:
-      $a and ($b or $c) and $d and filesize > 2MB
+      $manifest and ($assets_mp3_a or $assets_mp3_b) and $res_mp3 and filesize > 2MB
 }
